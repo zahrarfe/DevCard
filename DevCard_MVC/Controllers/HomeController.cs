@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DevCard_MVC.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace DevCard_MVC.Controllers
 {
@@ -16,16 +17,31 @@ namespace DevCard_MVC.Controllers
             return View();
         }
 
-
+        [HttpGet]
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            var model = new Contact();
 
-            return View();
+            return View(model);
         }
 
+        [HttpPost]
+        //public JsonResult Contact(IFormCollection form)
+        //{
 
-       
+        //    return Json(Ok());
+        //}
+
+        //public JsonResult Contact(IFormCollection form)
+        //{
+        //    var Name = form["Name"];
+        //    return Json(Ok());
+        //}
+        public JsonResult Contact(Contact form)
+        {
+            Console.WriteLine((form.ToString()));
+            return Json(Ok());
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
