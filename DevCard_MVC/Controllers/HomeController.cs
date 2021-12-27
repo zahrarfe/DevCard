@@ -37,10 +37,17 @@ namespace DevCard_MVC.Controllers
         //    var Name = form["Name"];
         //    return Json(Ok());
         //}
-        public JsonResult Contact(Contact form)
+        public IActionResult Contact(Contact form)
         {
-            Console.WriteLine((form.ToString()));
-            return Json(Ok());
+            if (ModelState.IsValid == false)
+            {
+                ViewBag.error= "اطلاعات وارد شده صحیح نیست لطفا دوباره تلاش کنید";
+                return View(form);
+
+            }
+
+           ViewBag.success = "فرم شما با موفقیت ارسال شد";
+            return View();
         }
 
 
